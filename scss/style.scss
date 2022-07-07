@@ -1,0 +1,22 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  background-color: whitesmoke;
+}
+
+.content {
+  flex-wrap: wrap;
+  .movie-item {
+    width: 20rem;
+    margin: 2rem 0;
+
+    p {
+      font-size: .8rem;
+    }
+  }
+}

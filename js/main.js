@@ -1,51 +1,48 @@
+console.log('main2.js loaded');
+
+const keyAPI = 'api_key=4de8d273ef3b27a0c3dbf394596efab0';
+const baseURL = 'https://api.themoviedb.org/3'
+const popularKey = `${baseURL}/discover/movie?sort_by=popularity.desc&${keyAPI}`
+const imageURL = 'https://image.tmdb.org/t/p/w300/';
+
+document.addEventListener('DOMContentLoaded', () => {
+  getAPI(popularKey);
+});
+
+function getAPI(url) {
+  fetch(`${url}`)
+    .then(res => res.json())
+    .then(data => {
+      createMovies(data.results)
+    })
+}
+
 const content = document.querySelector('.content');
-const input = document.querySelector('.input');
-const searchBtn = document.querySelector('.search-btn');
 
-searchBtn.addEventListener('click', () => {
-  getAPI();
-})
-input.addEventListener('keypress', (event) => {
-  if (event.key == 'Enter') {
-    getAPI();
-  }
-})
-
-
-function getAPI() {
-  const movieItems = document.querySelectorAll('.movie-item');
-  if (movieItems) {
-    movieItems.forEach(movieItem => {
-      movieItem.remove();
-    });
-  }
-  
-  const options = {
-    method: 'GET',
-    headers: {
-      'X-RapidAPI-Key': 'a9f0d1ae89msh3d2d6c7f45d7d81p19d35djsnaaa2b2ac04a5',
-      'X-RapidAPI-Host': 'mdblist.p.rapidapi.com'
-    }
-  };
-  // Fetch API
-  fetch(`https://mdblist.p.rapidapi.com/?s=${input.value}`, options)
-	.then(response => response.json())
-  // Get Data
-	.then(response => {
-    // Make movie items using data
-    response.search.forEach(responseItem => {
-      const movieScore = document.createElement('h4');
-      movieScore.textContent = responseItem.score;
-      const movieDiv = document.createElement('div');
-      movieDiv.classList.add('movie-item', 'text-center');
-      const movieTitle = document.createElement('h6');
-      movieTitle.textContent = responseItem.title;
-      const yearDiv = document.createElement('p');
-      yearDiv.classList.add('item-year');
-      yearDiv.textContent = `(${responseItem.year})`;
-      movieDiv.append(movieScore, movieTitle, yearDiv)
-      content.append(movieDiv)
-    });
-  })
-	.catch(err => console.error(err));
+function createMovies(data) {
+  data.forEach(movie => {
+    console.log(movie);
+    // Create Div
+    const movieDiv = document.createElement('div');
+    movieDiv.classList.add('movie-item', 'text-white');
+    // Create Image
+    const imageEl = document.createElement('img');
+    imageEl.src = imageURL + movie.poster_path;
+    // Create Info 
+    const infoBox = document.createElement('div');
+    infoBox.classList.add('movie-info', 'd-flex', 'justify-content-between', 'pt-2');
+    infoBox.style.maxWidth = `${imageEl.width}px`;
+    // Create Title
+    const titleDiv = document.createElement('h5');
+    titleDiv.classList.add('movie-title');
+    titleDiv.textContent = movie.title;
+    // Create Rating
+    const RatingDiv = document.createElement('div');
+    RatingDiv.classList.add('movie-rating', 'px-3', 'py-1', 'rounded-1', 'align-middle');
+    RatingDiv.textContent = movie.vote_average;
+    // Append everything
+    infoBox.append(titleDiv, RatingDiv);
+    movieDiv.append(imageEl, infoBox);
+    content.append(movieDiv);
+  });
 }

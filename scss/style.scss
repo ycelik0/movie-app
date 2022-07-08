@@ -6,17 +6,38 @@
 
 html,
 body {
-  background-color: whitesmoke;
+  background-color: rgb(34,37,74);
 }
 
-.content {
-  flex-wrap: wrap;
-  .movie-item {
-    width: 20rem;
-    margin: 2rem 0;
+.input-field {
+  background-color: rgb(55,59,104);
 
-    p {
-      font-size: .8rem;
-    }
+  .input {
+    border: none;
+    outline: none;
+    border-radius: 1rem 0 0 1rem;
   }
+
+  .search-btn {
+    border: none;
+    outline: none;
+    border-radius: 0 1rem 1rem 0;
+    transition: 300ms;
+  }
+}
+
+.movie-item {
+  margin: .5rem;
+  border-radius: 1rem;
+}
+
+.movie-info {
+  background-color: rgb(255, 255, 255, 0.05);
+  height: 4rem;
+  padding: .75rem;
+}
+
+.movie-rating {
+  background-color: rgb(255, 255, 255, 0.05);
+  height: max-content;
 }

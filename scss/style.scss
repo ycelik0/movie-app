@@ -29,15 +29,36 @@ body {
 .movie-item {
   margin: .5rem;
   border-radius: 1rem;
+
+  img {
+    height: 450px;
+    cursor: pointer;
+  }
 }
 
 .movie-info {
   background-color: rgb(255, 255, 255, 0.05);
-  height: 4rem;
+  height: 6rem;
+  max-width: 100% !important;
   padding: .75rem;
+}
+
+.movie-title {
+  max-width: 10rem;
 }
 
 .movie-rating {
   background-color: rgb(255, 255, 255, 0.05);
   height: max-content;
+  margin: 2px;
+  font-weight: 600;
+}
+.movie-rating.green {
+  color: green;
+}
+.movie-rating.orange {
+  color: orange;
+}
+.movie-rating.red {
+  color: red;
 }

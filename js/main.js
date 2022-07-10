@@ -87,3 +87,19 @@ function checkRating(movie, RatingDiv) {
     RatingDiv.classList.add('red')
   }
 }
+
+document.addEventListener('DOMContentLoaded', function createModal() {
+  const movieImages = document.querySelectorAll('.movie-image');
+  const modal = document.querySelector('.info-modal');
+  const closeModalBtn = document.querySelector('.close-modal-btn');
+  const modalShadow = document.querySelector('.modal-shadow');
+  console.log(movieImages);
+  
+  function openModal() {
+    modal.classList.add('active')
+    modalShadow.classList.add('active')
+  };
+  movieImages.forEach(movieImage => {
+    movieImage.addEventListener('click', openModal())
+  });
+})

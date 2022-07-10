@@ -7,6 +7,7 @@
 html,
 body {
   background-color: rgb(34,37,74);
+  color: white;
 }
 
 .input-field {
@@ -61,4 +62,47 @@ body {
 }
 .movie-rating.red {
   color: red;
+}
+
+$padding-modal: 1.5rem;
+
+.info-modal {
+  display: none;
+  top: 50%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-60%);
+  background-color: rgba(255, 255, 255, 0.1);
+  padding: $padding-modal;
+  border-radius: 1rem;
+  max-width: 30rem;
+}
+
+.info-modal.active {
+  display: block;
+}
+
+.modal-shadow {
+  pointer-events: none;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: rgba(0, 0, 0, 0);
+}
+
+.modal-shadow.active {
+  pointer-events: all;
+  background-color: rgba(0, 0, 0, .75);
+}
+
+.close-modal {
+  right: $padding-modal;
+  top: $padding-modal;
+  border: none;
+  outline: none;
+  background-color: transparent;
+
+  svg {
+    fill: white;
+  }
 }

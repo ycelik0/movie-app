@@ -75,6 +75,7 @@ function createMovies(data) {
     content.append(movieDiv);
     // Check Movie Rating
     checkRating(movie, RatingDiv)
+    createModal(movie)
   });
 }
 
@@ -88,18 +89,27 @@ function checkRating(movie, RatingDiv) {
   }
 }
 
-document.addEventListener('DOMContentLoaded', function createModal() {
+document.addEventListener('DOMContentLoaded', createModal())
+
+function createModal(movie) {
   const movieImages = document.querySelectorAll('.movie-image');
   const modal = document.querySelector('.info-modal');
   const closeModalBtn = document.querySelector('.close-modal-btn');
   const modalShadow = document.querySelector('.modal-shadow');
-  console.log(movieImages);
-  
+
+  closeModalBtn.addEventListener('click', closeModal)
+
+  movieImages.forEach(movieImage => {
+    movieImage.addEventListener('click', openModal)
+  });
+
   function openModal() {
     modal.classList.add('active')
     modalShadow.classList.add('active')
-  };
-  movieImages.forEach(movieImage => {
-    movieImage.addEventListener('click', openModal())
-  });
-})
+  }
+  
+  function closeModal() {
+    modal.classList.remove('active')
+    modalShadow.classList.remove('active')
+  }
+}
